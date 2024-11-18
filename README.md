@@ -30,8 +30,8 @@ Ensure you have the following installed on your local environment:
 
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
-   cd <repo-directory>
+   git clone https://github.com/Ignacio-J-Maylin/arithmetic-calculator.git
+   cd arithmetic-calculator
    ```
 
 2. Configure environment variables in a `.env` file at the project root:
