@@ -1,0 +1,717 @@
+{
+	"info": {
+		"_postman_id": "8acc199f-a9f4-4a14-94a0-cee70f4165f0",
+		"name": "code challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13485604"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "balance",
+					"item": [
+						{
+							"name": "add_credits",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Credits updated message\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.message).to.eql(\"Credits updated successfully\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credits\": 500.0,\r\n    \"action\": \"add\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/credits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"credits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove_credits",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"credits\": 10.0,\r\n    \"action\": \"remove\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/credits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"credits"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get_credits",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/credits",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"credits"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "operations",
+					"item": [
+						{
+							"name": "addition",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Addition result is correct\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.result).to.eql(8); \r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"addition\",\r\n    \"a\": 5,\r\n    \"b\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "subtraction",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"subtraction\",\r\n    \"a\": 5,\r\n    \"b\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multiplication",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"multiplication\",\r\n    \"a\": 5,\r\n    \"b\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "division",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Division result is correct\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.result).to.be.within(1.66, 1.67);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"division\",\r\n    \"a\": 5,\r\n    \"b\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "square_root",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"square_root\",\r\n    \"a\": 16\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "random_string",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"operation_type\": \"random_string\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/operation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"operation"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "record",
+					"item": [
+						{
+							"name": "history",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"\r",
+											"if (jsonData.records && jsonData.records.length > 0) {\r",
+											"    pm.globals.set(\"record_id_to_delete\", jsonData.records[0].ID);\r",
+											"    console.log(\"record_id_to_delete set to:\", jsonData.records[0].ID);\r",
+											"} else {\r",
+											"    console.warn(\"No records found in response to set record_id_to_delete\");\r",
+											"}\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Records array is returned\", function () {\r",
+											"    pm.expect(jsonData.records).to.be.an(\"array\");\r",
+											"    pm.expect(jsonData.total_records).to.be.at.least(0);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/records/history",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"records",
+										"history"
+									],
+									"query": [
+										{
+											"key": "operation_id",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "start_date",
+											"value": "2024-11-01",
+											"disabled": true
+										},
+										{
+											"key": "end_date",
+											"value": "2024-11-30",
+											"disabled": true
+										},
+										{
+											"key": "order_by",
+											"value": "amount",
+											"disabled": true
+										},
+										{
+											"key": "order_dir",
+											"value": "ASC",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "offset",
+											"value": "5",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/records/delete?record_id={{record_id_to_delete}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"records",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "record_id",
+											"value": "{{record_id_to_delete}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"var jsonData = pm.response.json();\r",
+											"pm.globals.set(\"token\", jsonData.token);\r",
+											"pm.globals.set(\"refresh_token\", jsonData.refresh_token);\r",
+											"\r",
+											"pm.test(\"Token is present\", function () {\r",
+											"    pm.expect(jsonData.token).to.be.a('string');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"testuser@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refresh",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.globals.set(\"token\", jsonData.token);\r",
+											"pm.globals.set(\"refresh_token\", jsonData.refresh_token);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{refresh_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/refresh",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sing up",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"if (pm.response.code === 201) {\r",
+											"    pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"    pm.test(\"User creation message\", function () {\r",
+											"        var jsonData = pm.response.json();\r",
+											"        pm.expect(jsonData.message).to.eql(\"User created successfully\");\r",
+											"    });\r",
+											"}\r",
+											"\r",
+											"if (pm.response.code === 409) {\r",
+											"    pm.test(\"Status code is 409\", function () {\r",
+											"        pm.response.to.have.status(409);\r",
+											"    });\r",
+											"    \r",
+											"    pm.test(\"User already exists message\", function () {\r",
+											"        pm.expect(pm.response.text()).to.eql(\"user already exists\\n\");\r",
+											"    });\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"username\": \"testuser@gmail.com\",\r\n  \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/signup",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.globals.unset(\"token\");\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/logout",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
