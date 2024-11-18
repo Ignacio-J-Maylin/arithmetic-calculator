@@ -1,0 +1,7 @@
+CREATE TABLE balances (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNIQUE NOT NULL,
+    credits FLOAT DEFAULT 0,
+    deleted_at TIMESTAMP NULL DEFAULT NULL,
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

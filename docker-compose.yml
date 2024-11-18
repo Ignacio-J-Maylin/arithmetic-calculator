@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+
+  arithmetic_db:
+    image: mysql:8.0
+    container_name: arithmetic_db
+    environment:
+      MYSQL_DATABASE: arithmetic
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - arithmetic-network
+
+  arithmetic_backend:
+    image: arithmetic-calculator-go:v1
+    container_name: arithmetic_backend
+    environment:
+      DB_HOST: arithmetic_db
+      DB_PORT: 3306
+      DB_USER: admin
+      DB_PASSWORD: admin
+      DB_NAME: arithmetic
+      ENV: production
+    ports:
+      - "8080:8080"
+    depends_on:
+      - arithmetic_db
+    networks:
+      - arithmetic-network
+      
+  arithmetic_frontend:
+    image: arithmetic-calculator-react:v1
+    container_name: arithmetic_frontend
+    ports:
+      - "3000:80"
+    environment:
+      REACT_APP_API_BASE_URL: "http://localhost:8081/api/v1"
+    networks:
+      - arithmetic-network
+
+volumes:
+  mysql_data: 
+    driver: local
+
+networks:
+  arithmetic-network:
+    driver: bridge
